@@ -155,6 +155,7 @@ aside {
   object-fit: cover;
   border-radius: 4px;
   margin-bottom: 16px;
+  border-radius: 50px;
 }
 
 .avatar-placeholder {
@@ -399,6 +400,17 @@ strong {
   .overlay {
     display: block;
   }
+  :root {
+  --text: #14142b;
+  --muted: #5d6285;
+
+  --accent: #241571;
+
+  --bg: #f7f8ff;
+  --border: #241571;
+
+  --shadow: rgba(36, 21, 113, 0.10);
+}
 
   /* Sidebar slides off-screen by default */
   aside {
@@ -407,7 +419,7 @@ strong {
     height: 100vh;
     transform: translateX(-100%);
     box-shadow: none;
-    border-right: 1px solid var(--border);
+    border-right: 2px solid var(--border);
   }
 
   /* Sidebar open state */
@@ -480,4 +492,29 @@ strong {
   .overlay {
     transition: none;
   }
+}
+.cursor {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #241571;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translate(-50%, -50%);
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: #241571;
+  border-radius: 50%;
+}
+.pub-list li:hover {
+  border-left-color: var(--accent);
 }
