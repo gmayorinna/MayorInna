@@ -229,6 +229,7 @@ nav {
   background: var(--accent);
 }
 
+
 .nav-link.external {
   font-size: 12.5px;
 }
@@ -419,7 +420,7 @@ strong {
     height: 100vh;
     transform: translateX(-100%);
     box-shadow: none;
-    border-right: 2px solid var(--border);
+    border-right: 3px solid var(--border);
   }
 
   /* Sidebar open state */

@@ -1,7 +1,9 @@
 /* ============================================================
    script.js — Personal Site Interactions
    ============================================================ */
-
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+});
 (function () {
   'use strict';
 
@@ -20,7 +22,7 @@
     hamburger.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
     overlay.classList.add('visible');
-    document.body.style.overflow = 'hidden'; // prevent background scroll
+    document.body.style.overflow = 'hidden';
   }
 
   function closeSidebar() {
@@ -47,7 +49,6 @@
     overlay.addEventListener('click', closeSidebar);
   }
 
-  /* Close sidebar when pressing Escape */
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && sidebar.classList.contains('open')) {
       closeSidebar();
@@ -55,11 +56,10 @@
   });
 
   /* ============================================================
-     2. CLOSE SIDEBAR when a nav link is tapped (mobile)
+     2. CLOSE SIDEBAR on nav click (mobile only)
      ============================================================ */
   navLinks.forEach(function (link) {
     link.addEventListener('click', function () {
-      // Only close if the sidebar is in drawer mode (mobile)
       if (window.innerWidth <= 767) {
         closeSidebar();
       }
@@ -67,48 +67,70 @@
   });
 
   /* ============================================================
-     3. ACTIVE NAV LINK — highlights as user scrolls
+     3. ACTIVE NAV LINK — scroll spy
      ============================================================ */
-  function setActiveLink(id) {
-    navLinks.forEach(function (link) {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + id) {
-        link.classList.add('active');
-      }
+
+ function setActiveLink(id) {
+  if (!id) return;
+
+  navLinks.forEach(link => link.classList.remove('active'));
+
+  const target = document.querySelector(`.nav-link[href="#${id}"]`);
+  if (target) target.classList.add('active');
+}
+
+function getActiveSection() {
+  let bestSection = null;
+  let bestScore = Infinity;
+
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+
+    // distance from top of viewport (0 is ideal)
+    const score = Math.abs(rect.top);
+
+    if (score < bestScore) {
+      bestScore = score;
+      bestSection = section;
+    }
+  });
+
+  return bestSection;
+}
+
+/* Throttle via rAF to prevent stepping through all sections */
+let ticking = false;
+
+function onScroll() {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const active = getActiveSection();
+      if (active) setActiveLink(active.id);
+      ticking = false;
     });
+
+    ticking = true;
   }
+}
 
-  /* Use IntersectionObserver for scroll tracking */
-  if ('IntersectionObserver' in window && sections.length > 0) {
-    const observerOptions = {
-      root: null,
-      // Fire when the top 30% of a section enters the viewport
-      rootMargin: '0px 0px -60% 0px',
-      threshold: 0
-    };
+window.addEventListener('scroll', onScroll);
 
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          setActiveLink(entry.target.id);
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach(function (section) {
-      observer.observe(section);
-    });
-  }
+/* init */
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+  setActiveLink('home');
+});
 
   /* ============================================================
-     4. RESIZE — reset sidebar state when resizing to desktop
+     4. RESIZE — reset sidebar on desktop
      ============================================================ */
   let resizeTimer;
+
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
+
     resizeTimer = setTimeout(function () {
       if (window.innerWidth > 767) {
-        // Ensure sidebar is visible and body scroll is restored
         sidebar.classList.remove('open');
         hamburger.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
@@ -119,9 +141,11 @@
   });
 
 })();
+
 /* ============================================================
    5. CUSTOM CURSOR
    ============================================================ */
+
 const cursor = document.querySelector('.cursor');
 
 let mouseX = 0;
