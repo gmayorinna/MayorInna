@@ -1,23 +1,16 @@
-/* ============================================================
-   script.js — Personal Site Interactions
-   ============================================================ */
-window.addEventListener('load', () => {
-  window.scrollTo(0, 0);
-});
+/* Personal Site Interactions */
 (function () {
   'use strict';
 
-  /* ── Elements ── */
-  const sidebar    = document.getElementById('sidebar');
-  const hamburger  = document.getElementById('hamburger');
-  const overlay    = document.getElementById('overlay');
-  const navLinks   = document.querySelectorAll('.nav-link[href^="#"]');
-  const sections   = document.querySelectorAll('main .section');
+  const sidebar = document.getElementById('sidebar');
+  const hamburger = document.getElementById('hamburger');
+  const overlay = document.getElementById('overlay');
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  const sections = document.querySelectorAll('main .section');
+  const cursor = document.querySelector('.cursor');
 
-  /* ============================================================
-     1. HAMBURGER — open / close sidebar on mobile
-     ============================================================ */
   function openSidebar() {
+    if (!sidebar || !hamburger || !overlay) return;
     sidebar.classList.add('open');
     hamburger.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
@@ -26,6 +19,7 @@ window.addEventListener('load', () => {
   }
 
   function closeSidebar() {
+    if (!sidebar || !hamburger || !overlay) return;
     sidebar.classList.remove('open');
     hamburger.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
@@ -34,139 +28,88 @@ window.addEventListener('load', () => {
   }
 
   function toggleSidebar() {
-    if (sidebar.classList.contains('open')) {
-      closeSidebar();
-    } else {
-      openSidebar();
-    }
+    if (!sidebar) return;
+    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
   }
 
-  if (hamburger) {
-    hamburger.addEventListener('click', toggleSidebar);
-  }
+  hamburger?.addEventListener('click', toggleSidebar);
+  overlay?.addEventListener('click', closeSidebar);
 
-  if (overlay) {
-    overlay.addEventListener('click', closeSidebar);
-  }
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && sidebar?.classList.contains('open')) {
       closeSidebar();
     }
   });
 
-  /* ============================================================
-     2. CLOSE SIDEBAR on nav click (mobile only)
-     ============================================================ */
-  navLinks.forEach(function (link) {
-    link.addEventListener('click', function () {
-      if (window.innerWidth <= 767) {
-        closeSidebar();
-      }
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 767) closeSidebar();
     });
   });
 
-  /* ============================================================
-     3. ACTIVE NAV LINK — scroll spy
-     ============================================================ */
+  function setActiveLink(id) {
+    if (!id) return;
+    navLinks.forEach((link) => link.classList.remove('active'));
+    document.querySelector(`.nav-link[href="#${id}"]`)?.classList.add('active');
+  }
 
- function setActiveLink(id) {
-  if (!id) return;
+  function getActiveSection() {
+    let activeSection = null;
+    let closestDistance = Number.POSITIVE_INFINITY;
 
-  navLinks.forEach(link => link.classList.remove('active'));
+    sections.forEach((section) => {
+      const distance = Math.abs(section.getBoundingClientRect().top - 80);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        activeSection = section;
+      }
+    });
 
-  const target = document.querySelector(`.nav-link[href="#${id}"]`);
-  if (target) target.classList.add('active');
-}
+    return activeSection;
+  }
 
-function getActiveSection() {
-  let bestSection = null;
-  let bestScore = Infinity;
+  let ticking = false;
 
-  sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-
-    // distance from top of viewport (0 is ideal)
-    const score = Math.abs(rect.top);
-
-    if (score < bestScore) {
-      bestScore = score;
-      bestSection = section;
-    }
-  });
-
-  return bestSection;
-}
-
-/* Throttle via rAF to prevent stepping through all sections */
-let ticking = false;
-
-function onScroll() {
-  if (!ticking) {
+  function onScroll() {
+    if (ticking) return;
     window.requestAnimationFrame(() => {
       const active = getActiveSection();
       if (active) setActiveLink(active.id);
       ticking = false;
     });
-
     ticking = true;
   }
-}
 
-window.addEventListener('scroll', onScroll);
+  window.addEventListener('scroll', onScroll);
+  window.addEventListener('load', () => setActiveLink('home'));
 
-/* init */
-window.addEventListener('load', () => {
-  window.scrollTo(0, 0);
-  setActiveLink('home');
-});
-
-  /* ============================================================
-     4. RESIZE — reset sidebar on desktop
-     ============================================================ */
   let resizeTimer;
-
-  window.addEventListener('resize', function () {
+  window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-
-    resizeTimer = setTimeout(function () {
-      if (window.innerWidth > 767) {
-        sidebar.classList.remove('open');
-        hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        overlay.classList.remove('visible');
-        document.body.style.overflow = '';
-      }
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth > 767) closeSidebar();
     }, 100);
   });
 
+  if (cursor && window.matchMedia('(pointer: fine)').matches) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    document.addEventListener('mousemove', (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    });
+
+    function animateCursor() {
+      currentX += (mouseX - currentX) * 0.12;
+      currentY += (mouseY - currentY) * 0.12;
+      cursor.style.left = `${currentX}px`;
+      cursor.style.top = `${currentY}px`;
+      requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+  }
 })();
-
-/* ============================================================
-   5. CUSTOM CURSOR
-   ============================================================ */
-
-const cursor = document.querySelector('.cursor');
-
-let mouseX = 0;
-let mouseY = 0;
-
-let currentX = 0;
-let currentY = 0;
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function animateCursor() {
-  currentX += (mouseX - currentX) * 0.12;
-  currentY += (mouseY - currentY) * 0.12;
-
-  cursor.style.left = `${currentX}px`;
-  cursor.style.top = `${currentY}px`;
-
-  requestAnimationFrame(animateCursor);
-}
-
-animateCursor();

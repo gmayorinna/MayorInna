@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MayorInna</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mayor Inna Gurung</title>
+  <meta name="description" content="Personal academic and professional profile of Mayor Inna Gurung." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="profile_style_edited.css" />
 </head>
 <body>
-
-  <div class="cursor">
-  <div class="cursor-dot"></div>
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
   </div>
 
-  <!-- ── Mobile top bar (hamburger) ── -->
   <header class="topbar">
     <span class="topbar-name">Mayor Inna Gurung</span>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -25,23 +24,18 @@
     </button>
   </header>
 
-  <!-- ── Overlay (mobile) ── -->
   <div class="overlay" id="overlay"></div>
 
   <div class="layout">
-
-    <!-- ── Sidebar ── -->
     <aside id="sidebar">
       <div class="sidebar-inner">
-
-       <img class="avatar" src="IMG_3210.jpg" alt="Mayor Inna Gurung">
-        
+        <img class="avatar" src="img.jpg" alt="Portrait of Mayor Inna Gurung" />
 
         <div class="sidebar-name">Mayor Inna Gurung</div>
-        <div class="sidebar-title">PhD, Information and Computer Science</div>
+        <div class="sidebar-title">PhD · Information &amp; Computer Science</div>
 
-        <nav>
-          <a href="#home" class="nav-link">Home</a>
+        <nav aria-label="Main navigation">
+          <a href="#home" class="nav-link active">Home</a>
           <div class="sidebar-divider"></div>
           <a href="#experience" class="nav-link">Experience</a>
           <a href="#research" class="nav-link">Research</a>
@@ -50,147 +44,99 @@
           <div class="sidebar-divider"></div>
           <a href="https://www.linkedin.com/in/mayorinna/" class="nav-link external" target="_blank" rel="noopener">LinkedIn ↗</a>
           <a href="https://scholar.google.com/citations?user=UfLsEMsAAAAJ&hl=en" class="nav-link external" target="_blank" rel="noopener">Google Scholar ↗</a>
-          <!-- l -->
         </nav>
-
       </div>
     </aside>
 
-    <!-- ── Main Content ── -->
     <main id="main-content">
-
       <section class="section" id="home">
-        <h1>Hi!!! It's MAY-er IN-nah goo-RUNG</h1>
+        <p class="eyebrow">Social computing · AI governance · Digital strategy</p>
+        <h1>Hi, I’m Mayor Inna Gurung.</h1>
         <p>
-I study how narratives form, mutate, and compete in online information environments, and what that means for society. My work combines computational methods with social theory to understand the conditions under which harmful content spreads, biases are encoded into AI systems, and digital platforms reshape how societies reason and communicate.
-
-A core commitment of my research is translating rigorous impact evaluation evidence into actionable insights for policymakers. </p>
-
-<p>
-   am currently an intern with the World Bank’s Technology Strategy & Governance team, supporting initiatives related to enterprise architecture, digital transformation, and technology investment strategy. My experience spans both academia and industry, including three years of research in social computing and three years as a full-stack developer. This interdisciplinary background allows me to bridge research, technology strategy, and software development to drive impactful digital innovation.
-</p>
+          I study how narratives form, mutate, and compete in online information environments, and what that means for society. My work combines computational methods with social theory to understand how harmful content spreads, how bias can be encoded into AI systems, and how digital platforms reshape public reasoning and communication.
+        </p>
+        <p>
+          A core commitment of my research is translating rigorous evidence into actionable insights for policymakers, technology teams, and public-interest organizations.
+        </p>
+        <p>
+          I am currently an intern with the World Bank’s Technology Strategy &amp; Governance team, supporting initiatives related to enterprise architecture, digital transformation, and technology investment strategy. My background spans social computing research, full-stack software development, and applied technology strategy.
+        </p>
       </section>
-      
 
-
-      ..
       <section class="section" id="experience">
         <div class="rule"></div>
         <h2>Experience</h2>
-        <p>
-          My research sits at the intersection of [field A] and [field B].
-          I'm particularly interested in how [topic] can be applied to
-          [problem area] at scale.
-        </p>
-        <p>
+        <div class="item">
+          <h3>Technology Strategy &amp; Governance Intern · World Bank Group</h3>
           <p>
-          My research sits at the intersection of [field A] and [field B].
-          I'm particularly interested in how [topic] can be applied to
-          [problem area] at scale.
-        </p>
-        <p>
-          My research sits at the intersection of [field A] and [field B].
-          I'm particularly interested in how [topic] can be applied to
-          [problem area] at scale.
-        </p>
-          Current projects include work on <a href="#">[Project 1]</a>, a system
-          that [brief description], and <a href="#">[Project 2]</a>, which aims to
-          [brief description] anticipating [use case] and reducing [harm] at
-          population scale.
-        </p>
+            Supporting enterprise architecture, digital transformation, and technology investment strategy, with a focus on evaluating emerging technologies and AI-enabled enterprise systems.
+          </p>
+        </div>
+        <div class="item">
+          <h3>Social Computing Researcher</h3>
+          <p>
+            Conducted research on information diffusion, misinformation, online narratives, and platform-driven communication using computational and mixed-method approaches.
+          </p>
+        </div>
+        <div class="item">
+          <h3>Full-Stack Developer</h3>
+          <p>
+            Built and maintained software systems across front-end and back-end environments, bringing practical engineering experience into research and technology strategy work.
+          </p>
+        </div>
       </section>
 
       <section class="section" id="research">
         <div class="rule"></div>
         <h2>Research</h2>
         <p>
-          My research sits at the intersection of [field A] and [field B].
-          I'm particularly interested in how [topic] can be applied to
-          [problem area] at scale.
+          My research sits at the intersection of social computing, misinformation studies, AI governance, and computational social science. I am especially interested in how narratives, visual symbols, and platform affordances shape engagement, trust, emotion, and information diffusion.
         </p>
         <p>
-          <p>
-          My research sits at the intersection of [field A] and [field B].
-          I'm particularly interested in how [topic] can be applied to
-          [problem area] at scale.
-        </p>
-        <p>
-          My research sits at the intersection of [field A] and [field B].
-          I'm particularly interested in how [topic] can be applied to
-          [problem area] at scale.
-        </p>
-          Current projects include work on <a href="#">[Project 1]</a>, a system
-          that [brief description], and <a href="#">[Project 2]</a>, which aims to
-          [brief description] anticipating [use case] and reducing [harm] at
-          population scale.
+          Current areas of interest include stance-based diffusion modeling, social media-driven information campaigns, visual semiotics, misinformation detection, and responsible AI systems.
         </p>
       </section>
 
-     <section class="section" id="publications">
-  <div class="rule"></div>
-  <h2>Selected Publications</h2>
-  <ul class="pub-list">
+      <section class="section" id="publications">
+        <div class="rule"></div>
+        <h2>Selected Publications</h2>
+        <ul class="pub-list">
+          <li>
+            <span class="pub-title"><a href="https://link.springer.com/article/10.1007/s13278-025-01479-y" target="_blank" rel="noopener">Modeling polarized information diffusion with SEI(A)I(D)Z: a stance-based epidemiological approach</a></span>
+            <span class="pub-authors"><strong>Mayor Inna Gurung</strong> et al.</span>
+            <span class="pub-venue">Social Network Analysis and Mining, 2025</span>
+          </li>
+          <li>
+            <span class="pub-title"><a href="https://link.springer.com/content/pdf/10.1007/s13278-025-01565-1.pdf" target="_blank" rel="noopener">Narrative diffusion in social networks: a survey</a></span>
+            <span class="pub-authors"><strong>Mayor Inna Gurung</strong> et al.</span>
+            <span class="pub-venue">Social Network Analysis and Mining, 2025</span>
+          </li>
+          <li>
+            <span class="pub-title"><a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6D5F6B7CBACF4C025DEB2A1FE64A47E0/S2632324925100229a.pdf/examining-the-role-of-semiotics-in-social-media-driven-information-campaigns.pdf" target="_blank" rel="noopener">Examining the role of semiotics in social media-driven information campaigns</a></span>
+            <span class="pub-authors"><strong>Mayor Inna Gurung</strong> et al.</span>
+            <span class="pub-venue">Data &amp; Policy, 2025</span>
+          </li>
+          <li>
+            <span class="pub-title"><a href="https://doi.org/10.1007/s13278-025-01469-0" target="_blank" rel="noopener">Symbolic signals on Instagram: how visual media shapes engagement, emotion, trust, and diffusion</a></span>
+            <span class="pub-authors"><strong>Mayor Inna Gurung</strong> et al.</span>
+            <span class="pub-venue">Social Network Analysis and Mining, 2025</span>
+          </li>
+        </ul>
+      </section>
 
-    <li>
-      <span class="pub-title">
-        <a href="https://link.springer.com/article/10.1007/s13278-025-01479-y" target="_blank" rel="noopener">
-          Modeling polarized information diffusion with SEI(A)I(D)Z: a stance-based epidemiological approach
-        </a>
-      </span>
-      <span class="pub-authors"><strong>Mayor Inna Gurung</strong> et al.</span>
-      <span class="pub-venue">Social Network Analysis and Mining, 2025</span>
-    </li>
-
-    <li>
-      <span class="pub-title">
-        <a href="https://link.springer.com/content/pdf/10.1007/s13278-025-01565-1.pdf" target="_blank" rel="noopener">
-          Narrative diffusion in social networks: a survey
-        </a>
-      </span>
-      <span class="pub-authors"><strong>Mayor Inna Gurung</strong> et al.</span>
-      <span class="pub-venue">Social Network Analysis and Mining, 2025</span>
-    </li>
-
-      <li>
-      <span class="pub-title">
-        <a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6D5F6B7CBACF4C025DEB2A1FE64A47E0/S2632324925100229a.pdf/examining-the-role-of-semiotics-in-social-media-driven-information-campaigns.pdf" target="_blank" rel="noopener">
-          Examining the role of semiotics in social media-driven information campaigns
-        </a>
-      </span>
-      <span class="pub-authors"><strong>Mayor Inna Gurung</strong> et al.</span>
-      <span class="pub-venue">Data & Policy, 2025</span>
-    </li>
-    
-      <li>
-      <span class="pub-title">
-        <a href="https://doi.org/10.1007/s13278-025-01469-0" target="_blank" rel="noopener">
-          Symbolic signals on Instagram: how visual media shapes engagement, emotion, trust, and diffusion
-        </a>
-      </span>
-      <span class="pub-authors"><strong>Mayor Inna Gurung</strong> et al.</span>
-      <span class="pub-venue">Social Network Analysis and Mining, 2025</span>
-    </li>
-  </ul>
-</section>
       <section class="section" id="contact">
         <div class="rule"></div>
         <h2>Contact</h2>
         <p>
-          I'm always happy to hear from researchers, collaborators, and students.
-          The best way to reach me is by email at
-          <a href="mailto:you@institution.edu">gmayorinna@gmail.com</a>.
-
+          I am always happy to hear from researchers, collaborators, and students. The best way to reach me is by email at <a href="mailto:gmayorinna@gmail.com">gmayorinna@gmail.com</a>.
+        </p>
         <p>
-          I'm based in Washington, D.C. You can also DM on:
-          <a href="https://www.linkedin.com/in/mayorinna/" target="_blank" rel="noopener">LinkedIn</a> and
-          <a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>.
+          I am based in Washington, D.C. You can also connect with me on <a href="https://www.linkedin.com/in/mayorinna/" target="_blank" rel="noopener">LinkedIn</a>.
         </p>
       </section>
-
     </main>
-  </div><!-- /.layout -->
+  </div>
 
-  <script src="script.js"></script>
-  
+  <script src="profile_script_edited.js"></script>
 </body>
 </html>
