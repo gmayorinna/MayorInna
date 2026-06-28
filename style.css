@@ -546,3 +546,10 @@ strong {
     display: none;
   }
 }
+
+.date {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 400;
+}
